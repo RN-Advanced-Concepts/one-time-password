@@ -1,12 +1,15 @@
+// Note: Cloud functions are connected to the Datastore of Firebase through the Service Client.
+// serviceAccount = contains the secret credentials that authorize as to make any type of change.
+
+const admin = require('firebase-admin'); // gives access to the service account
 const functions = require('firebase-functions');
 const createUser = require('./creat_user');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-exports.helloWorld = functions.https.onRequest((request, response) => {
- response.send("Hello from Firebase!");
-}); 
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://one-time-password-dbf0a.firebaseio.com"
+  });
 
 exports.createUser = functions.https.onRequest(createUser);
 
