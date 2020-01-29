@@ -3,7 +3,9 @@
 
 const admin = require('firebase-admin'); // gives access to the service account
 const functions = require('firebase-functions');
+
 const createUser = require('./creat_user');
+const serviceAccount = require('./service_account.json')
 
 
 admin.initializeApp({
