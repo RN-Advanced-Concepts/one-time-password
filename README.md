@@ -6,7 +6,18 @@ Note: I've uploaded to this repo the credentials for the admin. I then set to .g
 
 
 065. We enabled Anonymous authentication, to be able to maintain the accounts (and run the creat_user function).
+068. We created an account in Twilio and send an SMS to our personal mobile phone
+phone number in Twilio: +12602724023
+
+
+
+
+### packages
+* firebase...
+* npm install --save twilio 
+
 
 
 
 firebase deploy --project one-time-password-dbf0a
+Twilio: +12602724023
