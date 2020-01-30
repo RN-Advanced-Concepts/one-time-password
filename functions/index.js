@@ -5,6 +5,7 @@ const admin = require('firebase-admin'); // gives access to the service account
 const functions = require('firebase-functions');
 
 const createUser = require('./creat_user');
+const requestOneTimePassword = require('./request_one_time_password');
 const serviceAccount = require('./service_account.json'); // It's a key we created on firebase/project settings/Service Accounts.
 
 // copied from firebase/project settings/Service Accounts 
@@ -14,5 +15,6 @@ admin.initializeApp({
   });
 
 exports.createUser = functions.https.onRequest(createUser);
+exports.requestOneTimePassword = functions.https.onRequest(requestOneTimePassword);
 
   
