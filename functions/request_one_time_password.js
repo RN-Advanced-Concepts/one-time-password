@@ -6,7 +6,9 @@ module.exports = function(req, res) {
         return res.status(422).send({error: 'You must provide a phone number'})
     }
 
-    const phone = String(req.body.phone).replace(/[^\d]/g, '');
+	const phone = String(req.body.phone).replace(/[^\d]/g, "");
+
+    // const phone = req.body.phone.replace(/[^\d]/g, '').toString();
     
     admin.auth().getUser(phone)
     .then(useRecord => {
@@ -15,7 +17,12 @@ module.exports = function(req, res) {
         twilio.messages.create({
         body: 'Your code is ' + code,
         to: phone,
-        from: +12602724023      
+        //  you can't use phone numbers from your real account 
+        // as the 'From' number in requests made with your test credentials.
+        // You cannot use the '+12602724023'.
+        // So we use the number below which we got from Twilio
+        // See README file for more details.
+        from: "+15005550006" 
         }, (err) => {
             if (err) {
                 return res.status(422).send(err)

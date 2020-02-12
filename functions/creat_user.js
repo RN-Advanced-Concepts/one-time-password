@@ -4,13 +4,19 @@ const admin = require('firebase-admin'); // gives access to the service account
 
 module.exports = function(req, res) {
 	// Verify the user provided a phone
+	// req.body = is a js obj that contains all the data
+	// that was passed to this func when user called it. 
+	console.log('req.body', req.body);
+	
 	if (!req.body.phone) {
 		return res.status(422).send({ error: 'Bad Input' }); // 422 unprocessable entity status
 	}
 
 	// Format the phone number to remove dashes and parens
 	// convert it to a string, just in case.
-	const phone = toString(req.body.phone).replace(/[^\d]/g, '');
+	const phone = String(req.body.phone).replace(/[^\d]/g, "");
+    // const phone = req.body.phone.replace(/[^\d]/g, '').toString();
+
 
 	// Create a new user account using that phone number
 	admin
